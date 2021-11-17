@@ -250,7 +250,6 @@
 
 "@angular/dev-infra-private@https://github.com/angular/dev-infra-private-builds.git#6cdeb28b4c4adfa8c7e3a84f5ca5cb11bab21760":
   version "0.0.0-2357f952775070b44dbc09363c4593d033b982b3"
-  uid "6cdeb28b4c4adfa8c7e3a84f5ca5cb11bab21760"
   resolved "https://github.com/angular/dev-infra-private-builds.git#6cdeb28b4c4adfa8c7e3a84f5ca5cb11bab21760"
   dependencies:
     "@actions/core" "^1.4.0"
@@ -5375,10 +5374,8 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.4, graceful-fs@^4.2.6:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
 
-guess-parser@^0.4.12:
+guess-parser@../guess/packages/guess-parser:
   version "0.4.22"
-  resolved "https://registry.yarnpkg.com/guess-parser/-/guess-parser-0.4.22.tgz#c26ab9e21b69bbc761960c5a1511476ae85428eb"
-  integrity sha512-KcUWZ5ACGaBM69SbqwVIuWGoSAgD+9iJnchR9j/IarVI1jHVeXv+bUXBIMeqVMSKt3zrn0Dgf9UpcOEpPBLbSg==
   dependencies:
     "@wessberg/ts-evaluator" "0.0.27"
 

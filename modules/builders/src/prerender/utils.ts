@@ -37,11 +37,26 @@ export async function getRoutes(
 
   if (options.guessRoutes && tsConfigPath) {
     try {
-      routes = routes.concat(
+      const routeRoutes = await Promise.all(
         parseAngularRoutes(path.join(workspaceRoot, tsConfigPath))
-          .map((routeObj) => routeObj.path)
-          .filter((route) => !route.includes('*') && !route.includes(':')),
+          .map(async route => {
+            if (route.path.includes('*')) return [];
+            if (route.path.includes(':')) {
+              if (!route.prerender) return [];
+              const allParams = await route.prerender();
+              return allParams.map(params => {
+                // TODO use angular api to convert the route path to url
+                let newPath = route.path.slice();
+                Object.keys(params).forEach(key => {
+                  newPath = newPath.replace(`:${key}`, params[key]);
+                })
+                return newPath;
+              });
+            }
+            return [route.path];
+          })
       );
+      routes = routes.concat(...routeRoutes);
     } catch (e) {
       logger.error('Unable to extract routes from application.', e);
     }
