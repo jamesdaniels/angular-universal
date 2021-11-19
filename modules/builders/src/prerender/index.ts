@@ -22,7 +22,7 @@ import * as path from 'path';
 import Piscina from 'piscina';
 import { promisify } from 'util';
 import { PrerenderBuilderOptions, PrerenderBuilderOutput } from './models';
-import { getIndexOutputFile, getRoutes } from './utils';
+import { getIndexOutputFile, getRoutes, staticProps } from './utils';
 import { RenderOptions, RenderResult } from './worker';
 
 export const readFile = promisify(fs.readFile);
@@ -117,6 +117,11 @@ async function _renderUniversal(
       if (!fs.existsSync(serverBundlePath)) {
         throw new Error(`Could not find the main bundle: ${serverBundlePath}`);
       }
+
+      fs.writeFileSync(
+        path.join(baseOutputPath, localeDirectory, 'staticProps.json'),
+        JSON.stringify(staticProps, null, 2),
+      );
 
       const spinner = ora(`Prerendering ${routes.length} route(s) to ${outputPath}...`).start();
 
